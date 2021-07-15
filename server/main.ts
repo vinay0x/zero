@@ -14,7 +14,7 @@ async function bootstrap() {
   app.setViewEngine('ejs');
 
   const configService = app.get(ConfigService);
-  const port = configService.get("PORT") || 3000;
-  await app.listen(port, "0.0.0.0", () => console.log("Server started at port", port);
+  const port: number = parseInt(configService.get("PORT")) || 3000;
+  await app.listen(port, "0.0.0.0", () => console.log("Server started at port", port));
 }
 bootstrap();
