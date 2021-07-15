@@ -11,9 +11,9 @@
   ],
   "migrationsTableName": "migrations",
   "migrations": [
-    "migration/*.ts"
+    "server/migrations/*.ts"
   ],
   "cli": {
-    "migrationsDir": "migration"
+    "migrationsDir": "server/migrations"
   }
 }
