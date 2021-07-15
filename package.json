@@ -31,7 +31,10 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.0.3",
     "@prisma/client": "2.27.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "concurrently": "^6.2.0",
     "ejs": "^3.1.6",
     "prisma": "2.27.0",
@@ -39,7 +42,8 @@
     "react-dom": "^17.0.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
