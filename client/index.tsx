@@ -1,13 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LogoGradient from "./assets/logos/LogoGradient"
+import App from "./App";
 import "./assets/styles/index.scss";
-
-const App = () => (
-  <div>
-    <LogoGradient width={32} height={32} />
-  </div>
-);
 
 ReactDOM.render(
   <React.StrictMode>

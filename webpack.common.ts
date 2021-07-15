@@ -63,8 +63,7 @@ const config: Configuration = {
       async: false,
       typescript: {
         configOverwrite: {
-          exclude: ["server", "test"],
-          include: ["client", "declarations"]
+          exclude: ["server", "test"]
         },
       }
     }),
