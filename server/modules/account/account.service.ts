@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User, Organization } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PrismaService } from 'server/database/prisma.service';
 import { UserWithOrganizations } from 'server/types/user';
 import { CreateAccountDto } from './dto/create-account.dto';
@@ -9,29 +10,46 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 export class AccountService {
   constructor(private prisma: PrismaService) { }
 
-  create(createAccountDto: CreateAccountDto) {
-    return 'This action adds a new account';
+  async createUserWithOrganization(createAccountDto: CreateAccountDto) {
+    try {
+      await this.ensureUserDoesNotExist(createAccountDto.email);
+      await this.ensureOrganizationDoesNotExist(createAccountDto.organization);
+      const account = await this.prisma.user.create({
+        data: {
+          name: createAccountDto.name,
+          email: createAccountDto.email,
+          password: createAccountDto.password,
+          memberships: {
+            create: [{ organization: { create: { name: createAccountDto.organization } } }],
+          },
+        },
+      })
+      return account;
+    } catch (error) {
+      throw error
+    }
   }
 
-  async findAll() {
-    const user: UserWithOrganizations = await this.prisma.user.findFirst({
-      include: {
-        memberships: { include: { organization: true } },
-      }
+  private async ensureUserDoesNotExist(email: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        email,
+      },
     });
-
-    return user;
+    if (user) {
+      throw new Error('A user with that email already exists')
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} account`;
+  private async ensureOrganizationDoesNotExist(organizationName: string) {
+    const organization = await this.prisma.organization.findFirst({
+      where: {
+        name: organizationName
+      },
+    });
+    if (organization) {
+      throw new Error('An organization with that name already exists')
+    }
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
-    return `This action updates a #${id} account`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} account`;
-  }
 }

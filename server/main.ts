@@ -5,6 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { resolve } from 'path';
 import { AppModule } from './app.module';
+import { CommonExceptionFilter } from './GlobalExceptionHandler';
 import renderReactApp from './renderReactApp';
 
 async function bootstrap() {
@@ -16,6 +17,7 @@ async function bootstrap() {
   app.setBaseViewsDir(resolve('./public'));
   app.setViewEngine('ejs');
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new CommonExceptionFilter());
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('ZeroNest')
