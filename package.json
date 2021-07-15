@@ -10,7 +10,7 @@
     "start-client": "webpack serve --config webpack.dev.ts",
     "build-client": "webpack --config webpack.prod.ts",
     "build-server": "nest build",
-    "build": "yarn build-server && yarn build-client",
+    "build": "yarn build-client && yarn build-server",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start-nest": "nest start",
     "start-nest:dev": "nest start --watch",
