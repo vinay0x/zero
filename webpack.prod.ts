@@ -5,7 +5,7 @@ import common from "./webpack.common";
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    path: path.join(__dirname, "./server/public/dist/"),
+    path: path.join(__dirname, "./public/dist/"),
     filename: "bundle-[fullhash].js"
   },
 });
