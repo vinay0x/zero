@@ -12,6 +12,8 @@ async function bootstrap() {
   app.setBaseViewsDir(resolve('./server/public'));
   app.setViewEngine('ejs');
 
+  const configService = app.get(ConfigService);
+  const port = configService.get("PORT") || 3000;
   await app.listen(3000);
 }
 bootstrap();
