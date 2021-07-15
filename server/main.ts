@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { resolve } from 'path';
 import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -12,6 +13,8 @@ async function bootstrap() {
   app.useStaticAssets(resolve('./server/public'));
   app.setBaseViewsDir(resolve('./server/public'));
   app.setViewEngine('ejs');
+
+  app.useGlobalPipes(new ValidationPipe());
 
   const configService = app.get(ConfigService);
   const port: number = parseInt(configService.get("PORT")) || 3000;
