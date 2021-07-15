@@ -1,6 +1,6 @@
-import { Entity, PrimaryColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
-@Entity
+@Entity()
 export class Organization {
   @PrimaryGeneratedColumn()
   id: number;
