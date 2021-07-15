@@ -4,7 +4,8 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { resolve } from 'path';
-import { AppModule } from './app/app.module';
+import { AppModule } from './app.module';
+import renderReactApp from './renderReactApp';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -24,6 +25,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('documentation', app, document);
 
+  // Custom middleware for rendering the React app always as Nest.js doesn't have fallback route option
+  app.use(renderReactApp);
 
   const configService = app.get(ConfigService);
   const port: number = parseInt(configService.get("PORT")) || 3000;
