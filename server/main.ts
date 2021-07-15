@@ -1,8 +1,10 @@
+import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app/app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { resolve } from 'path';
-import { ConfigService } from '@nestjs/config';
+import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -12,6 +14,16 @@ async function bootstrap() {
   app.useStaticAssets(resolve('./public'));
   app.setBaseViewsDir(resolve('./public'));
   app.setViewEngine('ejs');
+  app.useGlobalPipes(new ValidationPipe());
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('ZeroNest')
+    .setDescription('The ZeroNest API description')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('documentation', app, document);
+
 
   const configService = app.get(ConfigService);
   const port: number = parseInt(configService.get("PORT")) || 3000;
