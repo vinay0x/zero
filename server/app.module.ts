@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AccountModule } from 'server/account/account.module';
+import { AccountModule } from 'server/modules/account/account.module';
 import { PrismaModule } from 'server/database/prisma.module';
 
 @Module({
