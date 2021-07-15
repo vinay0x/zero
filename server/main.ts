@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 import { resolve } from 'path';
 import { ConfigService } from '@nestjs/config';
 
@@ -9,8 +9,8 @@ async function bootstrap() {
     AppModule,
   );
 
-  app.useStaticAssets(resolve('./server/public'));
-  app.setBaseViewsDir(resolve('./server/public'));
+  app.useStaticAssets(resolve('./public'));
+  app.setBaseViewsDir(resolve('./public'));
   app.setViewEngine('ejs');
 
   const configService = app.get(ConfigService);
