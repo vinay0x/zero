@@ -13,7 +13,7 @@ async function bootstrap() {
   app.setBaseViewsDir(resolve('./server/public'));
   app.setViewEngine('ejs');
 
-  const port = proces.env.PORT || 3000;
+  const port: number = parseInt(process.env.PORT) || 3000;
   console.log("Starting server at port", port);
   await app.listen(3000);
 }
