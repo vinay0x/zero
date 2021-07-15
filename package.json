@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist assets.json ",
     "start-client": "webpack serve --config webpack.dev.ts",
     "build-client": "webpack --config webpack.prod.ts",
     "build-server": "nest build",
