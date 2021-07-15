@@ -44,6 +44,10 @@ const config: Configuration = {
           "postcss-loader"
         ],
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      }
     ],
   },
   resolve: {
@@ -59,8 +63,9 @@ const config: Configuration = {
       async: false,
       typescript: {
         configOverwrite: {
-          exclude: ["server", "test"]
-        }
+          exclude: ["server", "test"],
+          include: ["client", "declarations"]
+        },
       }
     }),
   ],
