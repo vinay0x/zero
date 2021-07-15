@@ -9,7 +9,7 @@ async function bootstrap() {
   );
 
   app.useStaticAssets(resolve('./server/public'));
-  app.setBaseViewsDir(resolve('./server/views'));
+  app.setBaseViewsDir(resolve('./server/public'));
   app.setViewEngine('ejs');
 
   await app.listen(3000);

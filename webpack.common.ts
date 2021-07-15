@@ -12,7 +12,7 @@ interface Configuration extends WebpackConfiguration {
 const config: Configuration = {
   mode: "development",
   output: {
-    path: path.join(__dirname, "./server/public/build/"),
+    path: path.join(__dirname, "./dist/client/"),
     filename: "bundle.js"
   },
   entry: "./client/index.tsx",
