@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
+import Login from './Login';
+import Features from './Features';
 
 interface Props {}
 
 export default function index({}: Props): ReactElement {
   return (
-    <div className="grid h-screen grid-cols-12 gap-4">
-      <div className="grid-cols-5 col-start-2">Hi</div>
-      <div className="grid-cols-5 col-end-11">Hi</div>
+    <div className="flex flex-col w-screen h-screen md:flex-row">
+      <Login />
+      <Features />
     </div>
   );
 }

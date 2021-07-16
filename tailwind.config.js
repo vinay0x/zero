@@ -10,5 +10,5 @@ module.exports = {
       dropShadow: ['hover', 'focus'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
