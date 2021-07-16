@@ -7,6 +7,7 @@ module.exports = {
   variants: {
     extend: {
       margin: ['group-hover'],
+      dropShadow: ['hover', 'focus'],
     },
   },
   plugins: [],
