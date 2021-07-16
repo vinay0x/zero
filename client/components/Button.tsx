@@ -1,17 +1,29 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
+import classnames from "classnames";
 
 interface Props {
   loading?: boolean,
   disabled?: boolean,
   label?: string | ReactElement<any>,
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-  Icon?: ReactElement<any>,
+  Icon?: ReactNode,
+  style: "primary" | "secondary"
 }
 
 export default function Button(props: Props): ReactElement {
+  const buttonStyles = {
+    primary: "bg-gray-900 text-white",
+    secondary: "bg-white text-gray-900 border-gray-400"
+  }
+  const Icon = props.Icon;
   return (
-    <button className="px-2 py-0.5 text-sm bg-gray-900 rounded text-white" onClick={props.onClick}>
+    <button className={classnames("flex items-center px-4 py-1.5 text-sm rounded-md shadow", buttonStyles[props.style])} onClick={props.onClick}>
       {props.label}
+      {Icon && <div className="ml-2 text-xl">{Icon}</div>}
     </button>
   )
+}
+
+Button.defaultProps = {
+  style: "primary"
 }

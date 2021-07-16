@@ -53,7 +53,8 @@ const config: Configuration = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      "@components": path.resolve(__dirname, "/client/components")
+      "@components": path.resolve(__dirname, "/client/components"),
+      "@client": path.resolve(__dirname, "/client"),
     }
   },
   plugins: [
@@ -68,13 +69,7 @@ const config: Configuration = {
         configOverwrite: {
           exclude: ["server", "test"],
           include: ["client"],
-          compilerOptions: {
-            "paths": {
-              "@components/*": [
-                "./client/components/*",
-              ],
-            }
-          }
+
         },
       }
     }),
