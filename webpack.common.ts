@@ -68,8 +68,6 @@ const config: Configuration = {
       typescript: {
         configOverwrite: {
           exclude: ["server", "test"],
-          include: ["client"],
-
         },
       }
     }),

@@ -4,9 +4,10 @@ import { BsArrowRightShort } from "react-icons/bs";
 
 export default function App(): ReactElement {
   return (
-    <div className="p-16">
-      This works!
-      <Button label="Submit" Icon={<BsArrowRightShort />} />
+    <div className="inline-flex p-16 space-x-3">
+      <Button label="Cancel" style="secondary"/>
+      <Button animateIcon label="Submit" Icon={<BsArrowRightShort />} style="primary"/>
+      
     </div>
   )
 }

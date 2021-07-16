@@ -7,19 +7,21 @@ interface Props {
   label?: string | ReactElement<any>,
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
   Icon?: ReactNode,
-  style: "primary" | "secondary"
+  animateIcon?: boolean,
+  style?: "primary" | "secondary",
 }
 
 export default function Button(props: Props): ReactElement {
   const buttonStyles = {
-    primary: "bg-gray-900 text-white",
-    secondary: "bg-white text-gray-900 border-gray-400"
+    primary: "bg-gray-900 text-white shadow hover:shadow-md",
+    secondary: "text-gray-600 border border-gray-300 shadow-sm hover:shadow-md",
   }
+  const animateIconClasses = "transition-all duration-200 group-hover:ml-3 group-hover:-mr-1"
   const Icon = props.Icon;
   return (
-    <button className={classnames("flex items-center px-4 py-1.5 text-sm rounded-md shadow", buttonStyles[props.style])} onClick={props.onClick}>
+    <button className={classnames("transition-all duration-200 flex group items-center px-4 py-1.5 font-medium text-sm rounded-md", buttonStyles[props.style])} onClick={props.onClick}>
       {props.label}
-      {Icon && <div className="ml-2 text-xl">{Icon}</div>}
+      {Icon && <div className={classnames("ml-2 text-xl", { [animateIconClasses]: props.animateIcon})}>{Icon}</div>}
     </button>
   )
 }
