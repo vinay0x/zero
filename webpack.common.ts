@@ -52,6 +52,9 @@ const config: Configuration = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@components": path.resolve(__dirname, "/client/components")
+    }
   },
   plugins: [
     new AssetsPlugin({
@@ -63,7 +66,15 @@ const config: Configuration = {
       async: false,
       typescript: {
         configOverwrite: {
-          exclude: ["server", "test"]
+          exclude: ["server", "test"],
+          include: ["client"],
+          compilerOptions: {
+            "paths": {
+              "@components/*": [
+                "./client/components/*",
+              ],
+            }
+          }
         },
       }
     }),
