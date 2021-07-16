@@ -14,16 +14,10 @@
     "jsx": "react",
     "resolveJsonModule": true,
     "incremental": true,
-    "skipLibCheck": true
-  },
-  "exclude": [
-    "node_modules",
-    "test",
-    "dist",
-    "**/*spec.ts",
-    "client"
-  ],
-  "include": [
-    "server"
-  ]
+    "skipLibCheck": true,
+    "paths": {
+      "@components/*": ["./client/components/*"],
+      "@client/*": ["./client/*"]
+    }
+  }
 }
