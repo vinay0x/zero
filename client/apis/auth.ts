@@ -1,5 +1,6 @@
 import userStore from '@client/stores/user';
 import axios, { AxiosResponse } from 'axios';
+import { removeAccessToken } from './axios';
 
 interface LoginPayload {
   email: string;
@@ -15,4 +16,5 @@ export const signup = (payload): Promise<AxiosResponse<any>> =>
 export const logout = (): void => {
   localStorage.removeItem('accessToken');
   userStore.authenticated = false;
+  removeAccessToken();
 };
