@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://i.ibb.co/C8LRxgk/zero.png" width="320" alt="ZeroNest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://i.ibb.co/y0ZWXPR/zero.png" width="320" alt="ZeroNest Logo" /></a>
 </p>
 
   <p align="center">A batteries included <a href="http://nestjs.com" target="_blank">Nest.js</a> boilerplate.</p>
