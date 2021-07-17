@@ -40,12 +40,12 @@ $ yarn start:prod
 
 ### Features
 
-[x] Modular architecture
-[x] Authentication with JWT
-[x] Heroku ready
-[ ] Component library
-[ ] Mailers
-[ ] Queues/Workers
-[ ] Billing & subscription with Stripe
-[ ] Teams & roles
-[ ] Plans & feature toggles
+- [x] Modular architecture
+- [x] Authentication with JWT
+- [x] Heroku ready
+- [ ] Component library
+- [ ] Mailers
+- [ ] Queues/Workers
+- [ ] Billing & subscription with Stripe
+- [ ] Teams & roles
+- [ ] Plans & feature toggles
