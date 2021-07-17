@@ -10,5 +10,9 @@ export const initializeAxios = (): void => {
 };
 
 export const setAccessToken = (token: string) => {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+};
+
+export const removeAccessToken = (): void => {
+  delete axios.defaults.headers['Authorization'];
 };

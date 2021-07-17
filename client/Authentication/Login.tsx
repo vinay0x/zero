@@ -1,4 +1,5 @@
 import { login as loginAPI } from '@client/apis/auth';
+import { setAccessToken } from '@client/apis/axios';
 import LogoWithGradient from '@client/assets/logos/LogoGradient';
 import userStore from '@client/stores/user';
 import Button from '@components/Button';
@@ -24,6 +25,7 @@ export default view(function Login({}): ReactElement {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
+
   const login = async () => {
     try {
       if (await validate({ email, password })) {
@@ -32,6 +34,7 @@ export default view(function Login({}): ReactElement {
           password,
         });
         localStorage.setItem('accessToken', res.data.accessToken);
+        setAccessToken(res.data.accessToken);
         userStore.authenticated = true;
         history.push('/');
       }
