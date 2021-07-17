@@ -13,6 +13,7 @@ interface Props {
   size?: 'lg' | 'md' | 'sm';
   isFullWidth?: boolean;
   centerLabel?: boolean;
+  type: 'button' | 'submit';
 }
 
 export default function Button(props: Props): ReactElement {
@@ -40,6 +41,7 @@ export default function Button(props: Props): ReactElement {
         sizeClasses[props.size],
       )}
       onClick={props.onClick}
+      type={props.type}
     >
       {props.label}
       {Icon && (
@@ -58,4 +60,5 @@ export default function Button(props: Props): ReactElement {
 Button.defaultProps = {
   style: 'primary',
   size: 'sm',
+  type: 'button',
 };

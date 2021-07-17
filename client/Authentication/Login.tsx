@@ -1,11 +1,13 @@
 import { login as loginAPI } from '@client/apis/auth';
 import LogoWithGradient from '@client/assets/logos/LogoGradient';
+import userStore from '@client/stores/user';
 import Button from '@components/Button';
 import Input from '@components/Input';
+import { view } from '@risingstack/react-easy-state';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import React, { ReactElement, useState } from 'react';
 import { useValidation } from 'react-class-validator';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 class LoginValidation {
   @IsEmail({}, { message: 'Invalid email' })
@@ -17,11 +19,11 @@ class LoginValidation {
   public password: string;
 }
 
-export default function Login({}): ReactElement {
+export default view(function Login({}): ReactElement {
   const [validate, errors] = useValidation(LoginValidation);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const history = useHistory();
   const login = async () => {
     try {
       if (await validate({ email, password })) {
@@ -29,8 +31,9 @@ export default function Login({}): ReactElement {
           email,
           password,
         });
-        console.log(res);
-        console.log(typeof res);
+        localStorage.setItem('accessToken', res.data.accessToken);
+        userStore.authenticated = true;
+        history.push('/');
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +55,7 @@ export default function Login({}): ReactElement {
             </Link>
           </p>
         </div>
-        <div className="flex flex-col">
+        <form className="flex flex-col">
           <Input
             label="Email"
             className="mb-4"
@@ -80,13 +83,14 @@ export default function Login({}): ReactElement {
           </div>
           <Button
             style="secondary"
+            type="button"
             size="sm"
             centerLabel
             label="Continue with Google"
           />
-        </div>
+        </form>
         {JSON.stringify(errors)}
       </div>
     </div>
   );
-}
+});
