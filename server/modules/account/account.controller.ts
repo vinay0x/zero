@@ -9,6 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { RequestUser } from 'server/decorators/requestUser.decorator';
 import { AuthService } from '../auth/auth.service';
 import { AccountService } from './account.service';
 import { CreateAccountDto } from './dto/create-account.dto';
@@ -29,7 +30,7 @@ export class AccountController {
 
   @Post('/login')
   @UseGuards(AuthGuard('local'))
-  login(@Body() loginDto: LoginDto) {
-    return this.authService.login(loginDto);
+  login(@RequestUser() user) {
+    return this.authService.login(user);
   }
 }
