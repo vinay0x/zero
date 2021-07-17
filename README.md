@@ -27,6 +27,12 @@ $ yarn start:debug
 
 # production mode
 $ yarn start:prod
+
+# migrations
+$ npx prisma migrate
+
+# generating migrations from schema.prisma
+$ npx prisma migrate:generate
 ```
 
 ## Built with
