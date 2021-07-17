@@ -41,6 +41,7 @@ $ yarn start:prod
 ### Features
 
 - [x] Modular architecture
+- [x] Progressive build tooling
 - [x] Authentication with JWT
 - [x] Heroku ready
 - [ ] Component library
