@@ -47,7 +47,7 @@ export default view(function Login({}): ReactElement {
     <div className="flex items-center justify-center h-full grid-cols-1 bg-white">
       <div className="px-8 pt-8 pb-12 space-y-6 md:w-96">
         <div className="mr-12">
-          <LogoWithGradient width={32} height={32} />
+          <LogoWithGradient width={48} height={48} />
           <p className="mt-2 text-3xl font-bold text-gray-900">
             Log in to continue.
           </p>
@@ -92,7 +92,6 @@ export default view(function Login({}): ReactElement {
             label="Continue with Google"
           />
         </form>
-        {JSON.stringify(errors)}
       </div>
     </div>
   );
