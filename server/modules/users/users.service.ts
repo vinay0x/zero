@@ -4,9 +4,9 @@ import { PrismaService } from 'server/database/prisma.service';
 
 @Injectable()
 export class UsersService {
-  constructor(readonly prisma: PrismaService) { }
+  constructor(readonly prisma: PrismaService) {}
 
-  async findByUsername(name: string): Promise<User | undefined> {
-    return this.prisma.user.findFirst({ where: { name } });
+  async findByEmail(email: string): Promise<User | undefined> {
+    return this.prisma.user.findFirst({ where: { email } });
   }
 }
