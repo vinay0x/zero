@@ -1,7 +1,7 @@
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import webpack, { Configuration as WebpackConfiguration } from "webpack";
-import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import AssetsPlugin from 'assets-webpack-plugin';
 
@@ -10,24 +10,28 @@ interface Configuration extends WebpackConfiguration {
 }
 
 const config: Configuration = {
-  mode: "development",
+  mode: 'development',
   output: {
-    path: path.join(__dirname, "./dist/client/"),
-    filename: "bundle.js"
+    path: path.join(__dirname, './dist/client/'),
+    filename: 'bundle.js',
   },
-  entry: "./client/index.tsx",
+  entry: './client/index.tsx',
   module: {
     rules: [
       {
         test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
-              "@babel/preset-env",
-              "@babel/preset-react",
-              "@babel/preset-typescript",
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              '@babel/plugin-transform-runtime',
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
             ],
           },
         },
@@ -36,53 +40,54 @@ const config: Configuration = {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
-          "postcss-loader"
+          'sass-loader',
+          'postcss-loader',
         ],
       },
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
-      }
+      },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      "@components": path.resolve(__dirname, "/client/components"),
-      "@client": path.resolve(__dirname, "/client"),
-    }
+      '@components': path.resolve(__dirname, '/client/components'),
+      '@client': path.resolve(__dirname, '/client'),
+    },
   },
   plugins: [
     new AssetsPlugin({
       filename: '/assets.json',
-      removeFullPathAutoPrefix: true
+      removeFullPathAutoPrefix: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       typescript: {
         configOverwrite: {
-          exclude: ["server", "test"],
+          exclude: ['server', 'test'],
         },
-      }
+      },
     }),
   ],
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, "build"),
+    contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true,
     port: 4000,
     hot: true,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    }
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization',
+    },
   },
 };
 

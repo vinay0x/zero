@@ -1,16 +1,44 @@
+import { login as loginAPI } from '@client/apis/auth';
 import LogoWithGradient from '@client/assets/logos/LogoGradient';
 import Button from '@components/Button';
 import Input from '@components/Input';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 import React, { ReactElement, useState } from 'react';
+import { useValidation } from 'react-class-validator';
 import { Link } from 'react-router-dom';
 
-interface Props {}
+class LoginValidation {
+  @IsEmail({}, { message: 'Invalid email' })
+  public email: string;
 
-export default function Features({}: Props): ReactElement {
+  @IsNotEmpty({
+    message: 'Password cannot be empty',
+  })
+  public password: string;
+}
+
+export default function Login({}): ReactElement {
+  const [validate, errors] = useValidation(LoginValidation);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const login = async () => {
+    try {
+      if (await validate({ email, password })) {
+        const res = await loginAPI({
+          email,
+          password,
+        });
+        console.log(res);
+        console.log(typeof res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center h-full bg-white md:w-1/2">
+    <div className="flex items-center justify-center h-full grid-cols-1 bg-white">
       <div className="px-8 pt-8 pb-12 space-y-6 md:w-96">
         <div className="mr-12">
           <LogoWithGradient width={32} height={32} />
@@ -35,10 +63,10 @@ export default function Features({}: Props): ReactElement {
             className="mb-4"
             label="Password"
             type="password"
-            value={email}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button className="mt-2" centerLabel label="Login" />
+          <Button className="mt-2" centerLabel label="Login" onClick={login} />
           <div className="relative my-4">
             <div
               className="absolute inset-0 flex items-center"
@@ -57,6 +85,7 @@ export default function Features({}: Props): ReactElement {
             label="Continue with Google"
           />
         </div>
+        {JSON.stringify(errors)}
       </div>
     </div>
   );
