@@ -3,7 +3,7 @@ import { User } from '@prisma/client';
 import { PrismaService } from 'server/database/prisma.service';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(readonly prisma: PrismaService) {}
 
   async findByEmail(email: string): Promise<User | undefined> {

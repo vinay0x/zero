@@ -48,6 +48,7 @@
     "ejs": "^3.1.6",
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "prisma": "2.27.0",
     "prop-types": "^15.7.2",
