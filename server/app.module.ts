@@ -6,6 +6,12 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PrismaModule, AccountModule, AuthModule, UsersModule],
+  imports: [
+    ConfigModule.forRoot(),
+    PrismaModule,
+    AccountModule,
+    AuthModule,
+    UsersModule,
+  ],
 })
-export class AppModule { } 
+export class AppModule {}

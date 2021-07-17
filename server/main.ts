@@ -9,9 +9,7 @@ import { CommonExceptionFilter } from './GlobalExceptionHandler';
 import renderReactApp from './renderReactApp';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(
-    AppModule,
-  );
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.useStaticAssets(resolve('./public'));
   app.setBaseViewsDir(resolve('./public'));
@@ -31,7 +29,9 @@ async function bootstrap() {
   app.use(renderReactApp);
 
   const configService = app.get(ConfigService);
-  const port: number = parseInt(configService.get("PORT")) || 3000;
-  await app.listen(port, "0.0.0.0", () => console.log("Server started at port", port));
+  const port: number = parseInt(configService.get('PORT')) || 3000;
+  await app.listen(port, '0.0.0.0', () =>
+    console.log('Server started at port', port),
+  );
 }
 bootstrap();

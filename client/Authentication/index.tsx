@@ -6,7 +6,7 @@ interface Props {}
 
 export default function index({}: Props): ReactElement {
   return (
-    <div className="flex flex-col w-screen h-screen md:flex-row">
+    <div className="grid grid-cols-2 h-screen">
       <Login />
       <Features />
     </div>
