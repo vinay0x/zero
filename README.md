@@ -43,6 +43,7 @@ $ yarn start:prod
 - [x] Modular architecture
 - [x] Progressive build tooling
 - [x] Authentication with JWT
+- [x] Session invalidation support
 - [x] Heroku ready
 - [ ] Component library
 - [ ] Mailers
