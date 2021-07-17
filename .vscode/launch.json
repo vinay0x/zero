@@ -5,17 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch via NPM",
-      "request": "launch",
-      "runtimeArgs": ["start:debug"],
-      "runtimeExecutable": "yarn",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
-    },
-    {
       "type": "node",
       "request": "attach",
-      "name": "Attach NestJS WS",
+      "name": "Attach NestJS Debugger",
       "port": 9229,
       "restart": true,
       "stopOnEntry": false,
