@@ -17,7 +17,9 @@
     "skipLibCheck": true,
     "paths": {
       "@components/*": ["./client/components/*"],
-      "@client/*": ["./client/*"]
+      "@client/*": ["./client/*"],
+      "@server/*": ["./server/*"],
+      "@modules/*": ["./modules/*"]
     }
   }
 }
