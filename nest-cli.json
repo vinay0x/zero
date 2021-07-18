@@ -2,6 +2,9 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "server",
   "compilerOptions": {
+    "assets": [
+      "mail/templates/**/*"
+    ],
     "deleteOutDir": true,
     "plugins": [
       "@nestjs/swagger/plugin"

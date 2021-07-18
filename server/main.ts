@@ -1,16 +1,15 @@
 import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { Queue } from 'bull';
+import { createBullBoard } from 'bull-board';
+import { BullAdapter } from 'bull-board/bullAdapter';
+import expressBasicAuth from 'express-basic-auth';
 import { resolve } from 'path';
 import { AppModule } from './app.module';
 import { CommonExceptionFilter } from './GlobalExceptionHandler';
 import renderReactApp from './renderReactApp';
-import { createBullBoard } from 'bull-board';
-import { BullAdapter } from 'bull-board/bullAdapter';
-import expressBasicAuth from 'express-basic-auth';
-import { Queue } from 'bull';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -30,7 +29,7 @@ async function bootstrap() {
   SwaggerModule.setup('documentation', app, document);
 
   // For bull-board integration
-  const queueNames = ['user'];
+  const queueNames = ['user', 'mail'];
   const { router: bullRouter } = createBullBoard(
     queueNames.map(
       (name) => new BullAdapter(app.get<Queue>(`BullQueue_${name}`)),
@@ -51,8 +50,7 @@ async function bootstrap() {
   // Custom middleware for rendering the React app always as Nest.js doesn't have fallback route option
   app.use(renderReactApp);
 
-  const configService = app.get(ConfigService);
-  const port: number = parseInt(configService.get('PORT')) || 3000;
+  const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0', () =>
     console.log('Server started at port', port),
   );

@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { hash, genSalt } from 'bcrypt';
-import { User, Organization } from '@prisma/client';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { genSalt, hash } from 'bcrypt';
 import { PrismaService } from 'server/database/prisma.service';
-import { UserWithOrganizations } from 'server/types/user';
-import { CreateAccountDto } from './dto/create-account.dto';
-import { LoginDto } from './dto/login.dto';
-import { UpdateAccountDto } from './dto/update-account.dto';
+import { MailService } from 'server/mail/mail.service';
 import { saltFactor } from './constants';
+import { CreateAccountDto } from './dto/create-account.dto';
 
 @Injectable()
 export class AccountService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private mailService: MailService,
+  ) {}
 
   async createUserWithOrganization(createAccountDto: CreateAccountDto) {
     try {
@@ -40,6 +39,12 @@ export class AccountService {
           },
         },
       });
+
+      await this.mailService.sendWelcomeEmail({
+        name: user.name,
+        email: user.email,
+      });
+
       return user;
     } catch (error) {
       throw error;
