@@ -12,13 +12,13 @@ import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
+    BullModule.registerQueue({ name: 'user' }),
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '365d' },
     }),
     PassportModule,
     UserModule,
-    BullModule.registerQueue({ name: 'user' }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
