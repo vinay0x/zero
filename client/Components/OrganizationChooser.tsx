@@ -3,7 +3,7 @@ import { fetchOrganizations as fetchOrganizationsAPI } from '@client/apis/user';
 import organizationStore from '@client/stores/organizations';
 import { view } from '@risingstack/react-easy-state';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import Button from './Common/Button';
 
 interface Props {}
@@ -12,10 +12,6 @@ export default view(function OrganizationChooser({}: Props): ReactElement {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   useEffect(() => {
-    console.log(organizationStore);
-    if (!!organizationStore.current) {
-      history.push('/');
-    }
     if (organizationStore.list.length) {
       setLoading(false);
     } else {
@@ -36,9 +32,11 @@ export default view(function OrganizationChooser({}: Props): ReactElement {
   if (loading) {
     return <h1>Loading organizations</h1>;
   }
+
   return (
     <div>
-      Hi
+      {organizationStore.current?.id && <Redirect to="/" />}
+      Please pick an organization
       {organizationStore.list.map((org) => (
         <OrgItem org={org} />
       ))}

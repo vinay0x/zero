@@ -3,7 +3,7 @@ import organizationStore from '@client/stores/organizations';
 import { view } from '@risingstack/react-easy-state';
 import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router';
-import Home from './Home';
+import Dashboard from './Dashboard';
 import OrganizationChooser from './OrganizationChooser';
 
 interface Props {}
@@ -17,7 +17,7 @@ export default view(function index({}: Props): ReactElement {
         path="/"
         redirectRoute="/organization"
         condition={organizationIsSelected}
-        component={Home}
+        component={Dashboard}
       />
     </Switch>
   );

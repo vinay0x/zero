@@ -3,8 +3,8 @@ import userStore from '@client/stores/user';
 import axios from 'axios';
 
 export const initializeAxios = (): void => {
+  rehydrateOrganizationHeader();
   rehydrateAccessToken();
-  // rehydrateOrganizationHeader();
   registerIntercepts();
 };
 
