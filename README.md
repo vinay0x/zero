@@ -35,6 +35,10 @@ $ npx prisma migrate
 $ npx prisma migrate:generate
 ```
 
+### Access queue monitoring web UI
+
+Go to `/bull-board` path. Login with username `admin` and password set in `.env` in the variable `BULL_BOARD_PASSWORD`.
+
 ## Built with
 
 - [Nest.js](https://nestjs.com)
@@ -51,9 +55,10 @@ $ npx prisma migrate:generate
 - [x] Authentication with JWT
 - [x] Session invalidation support
 - [x] Heroku ready
+- [x] Queues/Workers
+- [x] Queue monitoring using [bull-board](https://www.npmjs.com/package/bull-board)
 - [ ] Component library
 - [ ] Mailers
-- [ ] Queues/Workers
 - [ ] Billing & subscription with Stripe
 - [ ] Teams & roles
 - [ ] Plans & feature toggles
