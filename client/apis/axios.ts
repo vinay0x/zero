@@ -1,13 +1,19 @@
+import organizationStore from '@client/stores/organizations';
 import userStore from '@client/stores/user';
 import axios from 'axios';
 
 export const initializeAxios = (): void => {
   rehydrateAccessToken();
+  // rehydrateOrganizationHeader();
   registerIntercepts();
 };
 
 export const setAccessToken = (token: string) => {
   axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+};
+
+export const setOrganizationHeader = (organizationId: number) => {
+  axios.defaults.headers['Organization'] = organizationId;
 };
 
 export const removeAccessToken = (): void => {
@@ -19,6 +25,16 @@ const rehydrateAccessToken = (): void => {
   if (accessToken) {
     setAccessToken(accessToken);
     userStore.authenticated = true;
+  }
+};
+
+const rehydrateOrganizationHeader = (): void => {
+  const currentOrganization = JSON.parse(
+    localStorage.getItem('currentOrganization'),
+  );
+  if (currentOrganization) {
+    setOrganizationHeader(currentOrganization.id);
+    organizationStore.current = currentOrganization;
   }
 };
 

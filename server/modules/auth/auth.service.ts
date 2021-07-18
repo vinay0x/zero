@@ -1,10 +1,10 @@
+import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
-import { UserService } from '../user/user.service';
 import { compare } from 'bcrypt';
-import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
+import { UserWithOrganizations } from 'server/types/user';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,8 @@ export class AuthService {
   ) {}
 
   async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.userService.findByEmail(email);
+    const user: UserWithOrganizations =
+      await this.userService.findWithOrganizations(email);
     if (user) {
       const passwordsMatch = await compare(pass, user.password);
       if (!passwordsMatch) return null;
@@ -25,7 +26,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User) {
+  async login(user: UserWithOrganizations) {
     const payload = {
       email: user.email,
       id: user.id,
@@ -34,6 +35,7 @@ export class AuthService {
     await this.userQueue.add('updateLastLoggedIn', { id: user.id });
     return {
       accessToken: this.jwtService.sign(payload),
+      user,
     };
   }
 }

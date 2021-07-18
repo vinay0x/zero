@@ -1,18 +1,16 @@
+import Authentication from '@client/Components/Authentication';
+import PrivateRoute from '@client/Components/Common/PrivateRoute';
+import Home from '@client/Components/Home';
+import { view } from '@risingstack/react-easy-state';
 import React, { ReactElement, useEffect, useState } from 'react';
-import Button from '@components/Button';
-import PrivateRoute from '@components/PrivateRoute';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   Redirect,
+  Route,
+  Switch,
 } from 'react-router-dom';
-import Authentication from '@client/Authentication';
-import Dashboard from '@client/Dashboard';
-import { view } from '@risingstack/react-easy-state';
-import userStore from './stores/user';
 import { initializeAxios } from './apis/axios';
+import userStore from './stores/user';
 
 export default view(function App(): ReactElement {
   const [ready, setReady] = useState(false);
@@ -35,7 +33,7 @@ export default view(function App(): ReactElement {
             path="/"
             redirectRoute="/login"
             condition={isLoggedIn}
-            component={Dashboard}
+            component={Home}
           />
           <Redirect to="/" />
         </Switch>
