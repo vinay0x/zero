@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { hash, genSalt } from 'bcrypt';
 import { User, Organization } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { PrismaService } from 'server/database/prisma.service';
@@ -15,11 +16,17 @@ export class AccountService {
     try {
       await this.ensureUserDoesNotExist(createAccountDto.email);
       await this.ensureOrganizationDoesNotExist(createAccountDto.organization);
-      const account = await this.prisma.user.create({
+
+      const hashedPassword = await hash(
+        createAccountDto.password,
+        await genSalt(10),
+      );
+
+      const { password, ...user } = await this.prisma.user.create({
         data: {
           name: createAccountDto.name,
           email: createAccountDto.email,
-          password: createAccountDto.password,
+          password: hashedPassword,
           memberships: {
             create: [
               {
@@ -31,7 +38,7 @@ export class AccountService {
           },
         },
       });
-      return account;
+      return user;
     } catch (error) {
       throw error;
     }
