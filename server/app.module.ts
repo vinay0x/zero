@@ -1,15 +1,17 @@
+import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { BullModule } from '@nestjs/bull';
 import { LoggerModule } from 'nestjs-pino';
-import { AccountModule } from 'server/modules/account/account.module';
 import { PrismaModule } from 'server/database/prisma.module';
+import { AccountModule } from 'server/modules/account/account.module';
+import configuration from './config/configuration';
+import { MailModule } from './mail/mail.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     BullModule.forRoot({
       redis: {
         host: 'localhost',
@@ -23,6 +25,7 @@ import { UserModule } from './modules/user/user.module';
         },
       },
     }),
+    MailModule,
     PrismaModule,
     AccountModule,
     AuthModule,

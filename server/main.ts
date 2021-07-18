@@ -51,8 +51,7 @@ async function bootstrap() {
   // Custom middleware for rendering the React app always as Nest.js doesn't have fallback route option
   app.use(renderReactApp);
 
-  const configService = app.get(ConfigService);
-  const port: number = parseInt(configService.get('PORT')) || 3000;
+  const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0', () =>
     console.log('Server started at port', port),
   );

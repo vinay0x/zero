@@ -26,6 +26,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.6.0",
     "@nestjs/bull": "^0.4.0",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/common": "^8.0.0",
@@ -51,8 +52,10 @@
     "class-validator": "^0.13.1",
     "classnames": "^2.3.1",
     "concurrently": "^6.2.0",
+    "config": "^3.3.6",
     "ejs": "^3.1.6",
     "express-basic-auth": "^1.2.0",
+    "handlebars": "^4.7.7",
     "nestjs-pino": "^1.4.0",
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",
