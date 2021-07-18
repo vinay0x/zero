@@ -13,7 +13,9 @@ export class AuthService {
 
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.userService.findByEmail(email);
-    if (user && (await compare(pass, user.password))) {
+    if (user) {
+      const passwordsMatch = await compare(pass, user.password);
+      if (!passwordsMatch) return null;
       const { password, ...result } = user;
       return result;
     }
