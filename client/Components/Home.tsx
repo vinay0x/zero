@@ -12,10 +12,10 @@ export default view(function index({}: Props): ReactElement {
   const organizationIsSelected = !!organizationStore.current;
   return (
     <Switch>
-      <Route path="/organization" component={OrganizationChooser} />
+      <Route path="/organizations" component={OrganizationChooser} />
       <PrivateRoute
         path="/"
-        redirectRoute="/organization"
+        redirectRoute="/organizations"
         condition={organizationIsSelected}
         component={Dashboard}
       />
