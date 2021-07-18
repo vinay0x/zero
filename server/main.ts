@@ -7,6 +7,10 @@ import { resolve } from 'path';
 import { AppModule } from './app.module';
 import { CommonExceptionFilter } from './GlobalExceptionHandler';
 import renderReactApp from './renderReactApp';
+import { createBullBoard } from 'bull-board';
+import { BullAdapter } from 'bull-board/bullAdapter';
+import expressBasicAuth from 'express-basic-auth';
+import { Queue } from 'bull';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -24,6 +28,25 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('documentation', app, document);
+
+  // For bull-board integration
+  const queueNames = ['user'];
+  const { router: bullRouter } = createBullBoard(
+    queueNames.map(
+      (name) => new BullAdapter(app.get<Queue>(`BullQueue_${name}`)),
+    ),
+  );
+
+  app.use(
+    '/bull-board',
+    expressBasicAuth({
+      users: {
+        admin: process.env.BULL_BOARD_PASSWORD,
+      },
+      challenge: true,
+    }),
+    bullRouter,
+  );
 
   // Custom middleware for rendering the React app always as Nest.js doesn't have fallback route option
   app.use(renderReactApp);
