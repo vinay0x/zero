@@ -1,6 +1,5 @@
 import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
 import { Queue } from 'bull';
 import { Logger } from 'nestjs-pino';
 
@@ -12,7 +11,7 @@ export class MailService {
     private logger: Logger,
   ) {}
 
-  async sendWelcomeEmail(user: User): Promise<boolean> {
+  async sendWelcomeEmail(user): Promise<boolean> {
     try {
       await this.mailQueue.add('welcome', {
         user,

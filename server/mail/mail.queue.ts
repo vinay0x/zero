@@ -51,7 +51,7 @@ export class MailQueue {
   async sendWelcomeMail(job: Job<{ user: User }>): Promise<any> {
     try {
       await this.mailerService.sendMail({
-        template: 'welcome',
+        template: './welcome',
         context: job.data.user,
         subject: `Welcome to ZeroNest!`,
         to: job.data.user.email,
