@@ -57,8 +57,8 @@ Go to `/bull-board` path. Login with username `admin` and password set in `.env`
 - [x] Heroku ready
 - [x] Queues/Workers
 - [x] Queue monitoring using [bull-board](https://www.npmjs.com/package/bull-board)
+- [x] Mailers (Production config pending)
 - [ ] Component library
-- [ ] Mailers
 - [ ] Billing & subscription with Stripe
 - [ ] Teams & roles
 - [ ] Plans & feature toggles
