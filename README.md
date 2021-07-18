@@ -48,7 +48,7 @@ $ npx prisma migrate:generate
 
 - [x] Modular architecture
 - [x] Progressive build tooling
-- [x] Authentication with JWT (Password hashing pending)
+- [x] Authentication with JWT
 - [x] Session invalidation support
 - [x] Heroku ready
 - [ ] Component library
