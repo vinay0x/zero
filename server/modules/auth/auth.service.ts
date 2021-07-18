@@ -1,10 +1,10 @@
+import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
-import { UserService } from '../user/user.service';
 import { compare } from 'bcrypt';
-import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {

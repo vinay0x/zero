@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Role } from '@prisma/client';
 import { genSalt, hash } from 'bcrypt';
 import { PrismaService } from 'server/database/prisma.service';
+import { UserWithOrganizations } from 'server/database/types/user';
 import { MailService } from 'server/mail/mail.service';
 import { saltFactor } from './constants';
 import { CreateAccountDto } from './dto/create-account.dto';
@@ -22,8 +23,7 @@ export class AccountService {
         await genSalt(saltFactor),
       );
 
-      const user = await this.prisma.user.create({
-        select: { name: true, email: true },
+      const user: UserWithOrganizations = await this.prisma.user.create({
         data: {
           name: createAccountDto.name,
           email: createAccountDto.email,
@@ -39,6 +39,7 @@ export class AccountService {
             ],
           },
         },
+        include: { memberships: { include: { organization: true } } },
       });
 
       await this.mailService.sendWelcomeEmail({
@@ -46,7 +47,11 @@ export class AccountService {
         email: user.email,
       });
 
-      return user;
+      return {
+        name: user.name,
+        email: user.email,
+        memberships: user.memberships,
+      };
     } catch (error) {
       throw error;
     }
