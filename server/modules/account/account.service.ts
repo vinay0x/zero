@@ -7,6 +7,7 @@ import { UserWithOrganizations } from 'server/types/user';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { LoginDto } from './dto/login.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { saltFactor } from './constants';
 
 @Injectable()
 export class AccountService {
@@ -19,10 +20,11 @@ export class AccountService {
 
       const hashedPassword = await hash(
         createAccountDto.password,
-        await genSalt(10),
+        await genSalt(saltFactor),
       );
 
-      const { password, ...user } = await this.prisma.user.create({
+      const user = await this.prisma.user.create({
+        select: { name: true, email: true },
         data: {
           name: createAccountDto.name,
           email: createAccountDto.email,
