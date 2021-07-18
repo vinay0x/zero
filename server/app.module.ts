@@ -6,6 +6,7 @@ import { PrismaModule } from 'server/database/prisma.module';
 import { AccountModule } from 'server/modules/account/account.module';
 import configuration from './config/configuration';
 import { MailModule } from './mail/mail.module';
+import { AclModule } from './modules/acl/acl.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 
@@ -27,8 +28,9 @@ import { UserModule } from './modules/user/user.module';
     }),
     MailModule,
     PrismaModule,
-    AccountModule,
     AuthModule,
+    AclModule,
+    AccountModule,
     UserModule,
   ],
 })

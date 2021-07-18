@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { Role } from '@prisma/client';
 import { genSalt, hash } from 'bcrypt';
 import { PrismaService } from 'server/database/prisma.service';
 import { MailService } from 'server/mail/mail.service';
 import { saltFactor } from './constants';
 import { CreateAccountDto } from './dto/create-account.dto';
-
 @Injectable()
 export class AccountService {
   constructor(
@@ -34,6 +34,7 @@ export class AccountService {
                 organization: {
                   create: { name: createAccountDto.organization },
                 },
+                role: Role.Admin,
               },
             ],
           },
