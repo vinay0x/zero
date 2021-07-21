@@ -34,11 +34,13 @@ export default view(function OrganizationChooser({}: Props): ReactElement {
   }
 
   return (
-    <div>
+    <div className="p-8">
       Please pick an organization
-      {organizationStore.list.map((org) => (
-        <OrgItem key={org.id} org={org} />
-      ))}
+      <div className="flex mt-4 space-x-4">
+        {organizationStore.list.map((org) => (
+          <OrgItem key={org.id} org={org} />
+        ))}
+      </div>
     </div>
   );
 });

@@ -10,13 +10,17 @@ interface Props {}
 export default view(function Dashboard({}: Props): ReactElement {
   const history = useHistory();
   return (
-    <div>
-      Hey! This is the dashboard page for {organizationStore.current.name}
-      <Button
-        label="Change org"
-        onClick={() => history.push('/organizations')}
-      />
-      <Button label="Logout" onClick={(e) => logoutAPI()} />
+    <div className="p-8">
+      Hey! This is the dashboard page for{' '}
+      <strong>{organizationStore.current.name}</strong>
+      <div className="flex items-center space-x-4">
+        <Button
+          label="Change org"
+          className="my-4"
+          onClick={() => history.push('/organizations')}
+        />
+        <Button label="Logout" onClick={(e) => logoutAPI()} />
+      </div>
     </div>
   );
 });
