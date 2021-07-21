@@ -1,9 +1,10 @@
 import { login as loginAPI } from '@client/apis/auth';
 import { setAccessToken } from '@client/apis/axios';
 import LogoWithGradient from '@client/assets/logos/LogoGradient';
+import Button from '@client/Components/Common/Button';
+import Input from '@client/Components/Common/Input';
+import organizationStore from '@client/stores/organizations';
 import userStore from '@client/stores/user';
-import Button from '@components/Button';
-import Input from '@components/Input';
 import { view } from '@risingstack/react-easy-state';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import React, { ReactElement, useState } from 'react';
@@ -36,6 +37,12 @@ export default view(function Login({}): ReactElement {
         localStorage.setItem('accessToken', res.data.accessToken);
         setAccessToken(res.data.accessToken);
         userStore.authenticated = true;
+
+        const memberships = res.data.user.memberships;
+        organizationStore.list = memberships.map((membership) => ({
+          name: membership.organization.name,
+        }));
+
         history.push('/');
       }
     } catch (error) {

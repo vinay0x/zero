@@ -1,15 +1,5 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { RequestUser } from 'server/decorators/requestUser.decorator';
-import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserService } from './user.service';
 
@@ -21,5 +11,10 @@ export class UserController {
   @Get('/user')
   login(@RequestUser() user) {
     return this.userService.findByEmail(user.email);
+  }
+
+  @Get('/user/organizations')
+  getOrganizations(@RequestUser() user) {
+    return this.userService.findOrganizations(user.email);
   }
 }

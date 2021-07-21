@@ -51,6 +51,17 @@ export class AccountService {
     }
   }
 
+  async getOrganization(organizationName: string) {
+    try {
+      const organization = await this.prisma.organization.findFirst({
+        where: { name: organizationName },
+      });
+      return organization;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   private async ensureUserDoesNotExist(email: string) {
     const user = await this.prisma.user.findFirst({
       where: {
