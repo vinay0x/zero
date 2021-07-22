@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Inter:400,500,600,700');
+
+@import './variables.scss';
+@import './typography.scss';
+
+@import './components/sidebar.scss';
+@import './components/spinner.scss';
+
+body {
+  background-color: $background;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

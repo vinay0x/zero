@@ -1,5 +1,5 @@
-import React, { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
+import React, { ReactElement, ReactNode } from 'react';
 
 interface Props {
   className?: string;
@@ -20,7 +20,7 @@ export default function Button(props: Props): ReactElement {
   const buttonStyles = {
     primary: 'bg-gray-900 text-white drop-shadow hover:drop-shadow-md',
     secondary:
-      'text-gray-600 bg-white border border-gray-300 drop-shadow-sm hover:drop-shadow',
+      'text-muted hover:text-primary bg-white border border-gray-300 drop-shadow-sm',
   };
 
   const sizeClasses = {
@@ -34,7 +34,7 @@ export default function Button(props: Props): ReactElement {
   return (
     <button
       className={classNames(
-        'filter transition-all ease-in-out duration-200 flex group items-center px-4 py-1.5 font-medium text-sm rounded-md',
+        'filter transition-all ease-in-out duration-200 flex group items-center px-4 py-1.5 font-medium text-sm rounded',
         { 'w-full': props.isFullWidth, 'justify-center': props.centerLabel },
         props.className,
         buttonStyles[props.style],
@@ -43,16 +43,16 @@ export default function Button(props: Props): ReactElement {
       onClick={props.onClick}
       type={props.type}
     >
-      {props.label}
       {Icon && (
         <div
-          className={classNames('ml-2', {
+          className={classNames('mr-2', {
             [animateIconClasses]: props.animateIcon,
           })}
         >
           {Icon}
         </div>
       )}
+      {props.label}
     </button>
   );
 }

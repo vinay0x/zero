@@ -1,10 +1,11 @@
 import { login as loginAPI } from '@client/apis/auth';
 import { setAccessToken } from '@client/apis/axios';
-import LogoWithGradient from '@client/assets/logos/LogoGradient';
+import LogoOnly from '@client/assets/logos/LogoOnly';
 import Button from '@client/Components/Common/Button';
 import Input from '@client/Components/Common/Input';
 import organizationStore from '@client/stores/organizations';
 import userStore from '@client/stores/user';
+import Google from '@components/Common/Icons/Google';
 import { view } from '@risingstack/react-easy-state';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import React, { ReactElement, useState } from 'react';
@@ -51,16 +52,14 @@ export default view(function Login({}): ReactElement {
   };
 
   return (
-    <div className="flex items-center justify-center h-full grid-cols-1 bg-white">
+    <div className="flex items-center justify-center h-full grid-cols-1">
       <div className="px-8 pt-8 pb-12 space-y-6 md:w-96">
         <div className="mr-12">
-          <LogoWithGradient width={48} height={48} />
-          <p className="mt-2 text-3xl font-bold text-gray-900">
-            Log in to continue.
-          </p>
-          <p className="text-base text-gray-700">
+          <LogoOnly width={30} height={30} className="mb-2" />
+          <p className="subheading">Log in to continue.</p>
+          <p className="text-muted">
             Or create a new account{' '}
-            <Link className="font-medium text-gray-900 underline" to="/signup">
+            <Link className="underline text-primary" to="/signup">
               here
             </Link>
           </p>
@@ -96,6 +95,7 @@ export default view(function Login({}): ReactElement {
             type="button"
             size="sm"
             centerLabel
+            Icon={<Google width={18} height={18} />}
             label="Continue with Google"
           />
         </form>

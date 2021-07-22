@@ -1,0 +1,14 @@
+.sidebar {
+  width: 320px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $border;
+}
+
+.sidebar-item {
+  border-left: 2px solid transparent;
+  padding-left: 32px;
+  display: flex;
+  align-items: center;
+}
