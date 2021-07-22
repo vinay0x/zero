@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import React, { ReactElement } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { logout as logoutAPI } from '@client/apis/auth';
+import ProgressBar from '@components/Common/ProgressBar';
 
 interface Props {}
 
@@ -29,7 +30,12 @@ export default view(function Sidebar({}: Props): ReactElement {
         <NavItem Icon={Integration} label="Integrations" to="/integrations" />
         <NavItem Icon={Settings} label="Settings" to="/settings" />
       </div>
-      <div className="flex flex-col mb-8 space-y-1 text-muted">
+      <div className="flex flex-col px-8 py-4 space-y-2 text-xs border-t border-b border-border">
+        <div className="font-medium">Monthly Usage</div>
+        <ProgressBar progress={10} />
+        <div className="text-muted">10/250 messages</div>
+      </div>
+      <div className="flex flex-col py-8 space-y-1 text-muted">
         <NavItem Icon={Profile} label="Profile" to="/profile" />
         <div
           onClick={() => logoutAPI()}

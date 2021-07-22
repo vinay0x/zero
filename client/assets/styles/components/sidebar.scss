@@ -1,8 +1,9 @@
 .sidebar {
-  width: 300px;
+  width: 320px;
   background: white;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid $border;
 }
 
 .sidebar-item {
