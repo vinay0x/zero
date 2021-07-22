@@ -24,7 +24,7 @@ export default view(function OrganizationChooser({}: Props): ReactElement {
     try {
       const res = await fetchOrganizationsAPI();
       organizationStore.list = res.data;
-      // setLoading(false);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
