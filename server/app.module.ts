@@ -8,6 +8,7 @@ import configuration from './config/configuration';
 import { MailModule } from './mail/mail.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import PinoPretty from 'pino-pretty';
 
 @Module({
   imports: [
