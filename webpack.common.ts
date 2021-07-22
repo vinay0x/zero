@@ -47,8 +47,8 @@ const config: Configuration = {
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
-          'sass-loader',
           'postcss-loader',
+          'sass-loader',
         ],
       },
       {
