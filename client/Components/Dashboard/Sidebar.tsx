@@ -25,7 +25,7 @@ export default view(function Sidebar({}: Props): ReactElement {
       </div>
       <div className="flex flex-col flex-1 space-y-2 font-normal text-muted">
         <NavItem Icon={Dashboard} label="Dashboard" exact to="/" />
-        <NavItem Icon={Feedback} label="Surveys" to="/surveys" />
+        <NavItem Icon={Feedback} label="Messages" to="/messages" />
         <NavItem Icon={Team} label="Team" to="/team" />
         <NavItem Icon={Integration} label="Integrations" to="/integrations" />
         <NavItem Icon={Settings} label="Settings" to="/settings" />

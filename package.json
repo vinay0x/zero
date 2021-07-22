@@ -112,7 +112,7 @@
     "jest": "27.0.6",
     "mini-css-extract-plugin": "^2.1.0",
     "module-alias": "^2.2.2",
-    "pino-pretty": "^5.1.1",
+    "pino-pretty": "^5.1.2",
     "postcss": "^8.3.5",
     "postcss-loader": "^6.1.1",
     "prettier": "^2.3.2",
