@@ -4,12 +4,14 @@ export interface SVGProps {
   width: number;
   height: number;
   className: string;
+  strokeWidth: number;
 }
 
 export const SVGDefaultProps = {
   width: 24,
   height: 24,
   className: '',
+  strokeWidth: 1.5,
 };
 
 export default function SVG(props): ReactElement {

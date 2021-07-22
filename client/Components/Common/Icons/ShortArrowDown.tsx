@@ -7,7 +7,7 @@ export default function ShortArrowDown(props: SVGProps) {
       <path
         d="M8 10L12 14L16 10"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth={props.strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
