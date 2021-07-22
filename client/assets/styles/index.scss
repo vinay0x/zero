@@ -7,6 +7,8 @@
 @import './variables.scss';
 @import './typography.scss';
 
+@import './components/spinner.scss';
+
 body {
   @apply bg-gray-50;
 }

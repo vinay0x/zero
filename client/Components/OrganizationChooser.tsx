@@ -5,6 +5,7 @@ import Button from '@components/Common/Button';
 import { view } from '@risingstack/react-easy-state';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import PageLoader from './Common/PageLoader';
 
 interface Props {}
 
@@ -23,14 +24,14 @@ export default view(function OrganizationChooser({}: Props): ReactElement {
     try {
       const res = await fetchOrganizationsAPI();
       organizationStore.list = res.data;
-      setLoading(false);
+      // setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
 
   if (loading) {
-    return <h1>Loading organizations</h1>;
+    return <PageLoader />;
   }
 
   return (
