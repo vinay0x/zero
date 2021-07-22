@@ -19,7 +19,7 @@ export default view(function Sidebar({}: Props): ReactElement {
   return (
     <div className="sidebar">
       <div className="flex items-center p-8 space-x-3">
-        <Logo width={28} height={28} />
+        <LogoOnly width={28} height={28} />
         <div className="font-medium">{organizationStore.current.name}</div>
       </div>
       <div className="flex flex-col flex-1 space-y-2 font-normal text-muted">
