@@ -1,5 +1,5 @@
-import React, { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
+import React, { ReactElement, ReactNode } from 'react';
 
 interface Props {
   className?: string;
@@ -34,7 +34,7 @@ export default function Button(props: Props): ReactElement {
   return (
     <button
       className={classNames(
-        'filter transition-all ease-in-out duration-200 flex group items-center px-4 py-1.5 font-medium text-sm rounded-md',
+        'filter transition-all ease-in-out duration-200 flex group items-center px-4 py-1.5 font-medium text-sm rounded',
         { 'w-full': props.isFullWidth, 'justify-center': props.centerLabel },
         props.className,
         buttonStyles[props.style],

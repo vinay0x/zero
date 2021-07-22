@@ -1,0 +1,30 @@
+body {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: $primary;
+}
+
+span {
+  cursor: text;
+}
+
+.heading {
+  font-size: 38px;
+  line-height: 46px;
+  font-weight: bold;
+}
+
+.subheading {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+}

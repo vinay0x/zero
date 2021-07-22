@@ -1,9 +1,8 @@
+import AssetsPlugin from 'assets-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import AssetsPlugin from 'assets-webpack-plugin';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -18,6 +17,10 @@ const config: Configuration = {
   entry: './client/index.tsx',
   module: {
     rules: [
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
       {
         test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
@@ -57,7 +60,7 @@ const config: Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      '@components': path.resolve(__dirname, '/client/components'),
+      '@components': path.resolve(__dirname, '/client/Components'),
       '@client': path.resolve(__dirname, '/client'),
     },
   },
@@ -72,6 +75,9 @@ const config: Configuration = {
       typescript: {
         configOverwrite: {
           exclude: ['server', 'test'],
+          compilerOptions: {
+            types: ['node', 'webpack-env'],
+          },
         },
       },
     }),

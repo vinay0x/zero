@@ -55,12 +55,10 @@ export default view(function Login({}): ReactElement {
       <div className="px-8 pt-8 pb-12 space-y-6 md:w-96">
         <div className="mr-12">
           <LogoWithGradient width={48} height={48} />
-          <p className="mt-2 text-3xl font-bold text-gray-900">
-            Log in to continue.
-          </p>
-          <p className="text-base text-gray-700">
+          <p className="subheading">Log in to continue.</p>
+          <p className="text-muted">
             Or create a new account{' '}
-            <Link className="font-medium text-gray-900 underline" to="/signup">
+            <Link className="underline text-primary" to="/signup">
               here
             </Link>
           </p>

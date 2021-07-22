@@ -16,7 +16,7 @@
     "incremental": true,
     "skipLibCheck": true,
     "paths": {
-      "@components/*": ["./client/components/*"],
+      "@components/*": ["./client/Components/*"],
       "@client/*": ["./client/*"]
     }
   }

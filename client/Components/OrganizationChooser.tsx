@@ -1,10 +1,10 @@
 import { setOrganizationHeader } from '@client/apis/axios';
 import { fetchOrganizations as fetchOrganizationsAPI } from '@client/apis/user';
 import organizationStore from '@client/stores/organizations';
+import Button from '@components/Common/Button';
 import { view } from '@risingstack/react-easy-state';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import Button from './Common/Button';
 
 interface Props {}
 

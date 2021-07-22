@@ -2,7 +2,16 @@ module.exports = {
   purge: ['./client/**/*.html', './client/**/*.tsx'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#111111',
+        muted: '#6b7280',
+        accent: '#333456',
+        bright: '#e43f5a',
+        border: '#e3e8ee',
+        background: '#fdfdfd',
+      },
+    },
   },
   variants: {
     extend: {
