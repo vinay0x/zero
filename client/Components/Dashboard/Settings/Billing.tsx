@@ -1,4 +1,5 @@
 import Badge from '@components/Common/Badge';
+import Check from '@components/Common/Icons/Check';
 import CheckCertificate from '@components/Common/Icons/CheckCertificate';
 import Layout from '@components/Common/Layout';
 import classNames from 'classnames';
@@ -11,20 +12,39 @@ export default function Billing({}: Props): ReactElement {
     {
       label: 'Starter',
       price: '19',
-      color: 'green',
       badgeClassNames: 'self-start',
+      features: [
+        '250 monthly feedbacks',
+        'Upto 3 collection channels',
+        '1 user',
+        'Basic email support',
+        'Notifications engine',
+      ],
     },
     {
       label: 'Premium',
       price: '49',
-      color: 'red',
       badgeClassNames: 'self-start',
+      features: [
+        'Everything in Starter',
+        'Unlimited feedbacks',
+        'Upto 5 users',
+        'Upto 10 collection channels',
+        'Email and live chat support',
+        'Reports engine',
+      ],
     },
     {
       label: 'Elite',
       price: '149',
-      color: 'purple',
       badgeClassNames: 'self-start',
+      features: [
+        'Everything in Premium',
+        'Upto 10 users',
+        'Priority support',
+        'Insights engine',
+        'Unlimited integrations',
+      ],
     },
   ];
   const [active, setActive] = useState(plans[0].label);
@@ -47,30 +67,38 @@ export default function Billing({}: Props): ReactElement {
   );
 }
 
-const BillingCard = ({ label, color, price, active, setActive }) => (
+const BillingCard = ({ label, price, active, setActive, features }) => (
   <div
     className={classNames(
-      'flex flex-col space-y-2 pt-2 card cursor-pointer transition-all ease-in-out duration-200 relative',
+      'flex-1 max-w-xs flex flex-col space-y-2 pt-2 card cursor-pointer transition-all ease-in-out duration-200 relative',
       {
-        [`border-${color}-500 shadow`]: active,
+        [`border-brand filter drop-shadow-md`]: active,
       },
     )}
     onClick={setActive}
   >
     <CheckCertificate
       className={classNames(
-        `absolute text-${color}-600 top-4 right-4 transition-all ease-in-out duration-200 opacity-0`,
+        'absolute text-brand top-4 right-4 transition-all ease-in-out duration-200 opacity-0',
         { 'opacity-100': active },
       )}
     />
-    <Badge
-      label={label}
-      className={`self-start bg-${color}-200 text-${color}-800`}
-    />
+    <Badge label={label} className="self-start bg-gray-200 text-primary" />
     <p className="text-xl">${price}/mo</p>
     <p className="text-muted">
-      Extraordinary crimes against the people and the state had to be avenged by
-      agents extraordinary.
+      <ul>
+        {features.map((f) => (
+          <li className="flex items-center my-1 space-x-1.5 text-sm ">
+            <Check
+              width={12}
+              height={12}
+              strokeWidth={3}
+              className="text-green-500"
+            />
+            <p>{f}</p>
+          </li>
+        ))}
+      </ul>
     </p>
   </div>
 );

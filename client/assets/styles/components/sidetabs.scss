@@ -12,6 +12,6 @@
   display: flex;
   align-items: center;
   &.active {
-    @apply bg-gray-100 text-primary font-medium;
+    @apply bg-brand text-brand font-medium bg-opacity-5;
   }
 }
