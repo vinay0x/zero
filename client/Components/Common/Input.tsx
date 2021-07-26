@@ -22,7 +22,7 @@ export default function Input(props: InputProps): ReactElement {
         placeholder={props.placeholder}
         type={props.type}
         className={classNames(
-          'transition-all outline-none form-input text-sm text-primary block w-full py-1.5 mt-2 border border-gray-300 rounded focus:border-primary focus:outline-none focus:ring-0',
+          'transition-all outline-none form-input text-sm text-primary block w-full py-1.5 mt-2 border border-gray-300 rounded focus:border-primary focus:outline-none focus:ring-0 placeholder-gray-400',
           props.className,
         )}
       />

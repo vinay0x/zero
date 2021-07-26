@@ -9,7 +9,7 @@ interface Props {
 export default function SideTabs({ title, items }: Props): ReactElement {
   return (
     <div className="sidetabs">
-      <div className="p-8 text-xl font-medium">{title}</div>
+      <div className="p-8 heading">{title}</div>
       <div className="flex flex-col flex-1 space-y-1 font-normal text-muted">
         {items.map((item) => (
           <NavItem
