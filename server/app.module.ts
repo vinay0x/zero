@@ -14,10 +14,7 @@ import PinoPretty from 'pino-pretty';
   imports: [
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     BullModule.forRoot({
-      redis: {
-        host: 'localhost',
-        port: 6379,
-      },
+      redis: process.env.REDIS_URL || { host: '127.0.0.1', port: 6379 },
     }),
     LoggerModule.forRoot({
       pinoHttp: {
