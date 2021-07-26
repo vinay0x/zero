@@ -1,0 +1,17 @@
+.sidetabs {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $border;
+  height: 100vh;
+  min-width: 250px;
+}
+
+.sidetab-item {
+  padding: 6px 32px 6px 32px;
+  display: flex;
+  align-items: center;
+  &.active {
+    @apply bg-brand text-brand font-medium bg-opacity-5;
+  }
+}

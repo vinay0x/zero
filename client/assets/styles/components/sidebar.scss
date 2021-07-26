@@ -1,5 +1,5 @@
 .sidebar {
-  width: 320px;
+  min-width: 250px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -11,4 +11,8 @@
   padding-left: 32px;
   display: flex;
   align-items: center;
+  @apply py-1 transition-all ease-in-out duration-200;
+  &.active {
+    @apply border-brand text-brand font-medium;
+  }
 }

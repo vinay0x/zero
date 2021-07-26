@@ -1,7 +1,7 @@
 import React from 'react';
 import SVG, { SVGDefaultProps, SVGProps } from './SVG';
 
-export default function Settings(props: SVGProps) {
+export default function SettingsIcon(props: SVGProps) {
   return (
     <SVG width={props.width} height={props.height} className={props.className}>
       <path
@@ -24,4 +24,4 @@ export default function Settings(props: SVGProps) {
   );
 }
 
-Settings.defaultProps = SVGDefaultProps;
+SettingsIcon.defaultProps = SVGDefaultProps;

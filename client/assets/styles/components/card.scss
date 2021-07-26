@@ -1,0 +1,7 @@
+.card {
+  display: inline-block;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid $border;
+  @apply p-4;
+}

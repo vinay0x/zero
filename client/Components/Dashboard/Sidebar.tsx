@@ -55,8 +55,8 @@ const NavItem = ({ Icon, exact = false, label, to = null, onClick = null }) => {
       to={to}
       exact={exact}
       onClick={onClick}
-      className="py-1 sidebar-item"
-      activeClassName="border-primary text-primary font-medium"
+      className="sidebar-item"
+      activeClassName="active"
     >
       <Icon width={20} height={20} />
       <div className="ml-4">{label}</div>
