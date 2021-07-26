@@ -1,9 +1,10 @@
 import organizationStore from '@client/stores/organizations';
 import { view } from '@risingstack/react-easy-state';
 import React, { ReactElement } from 'react';
-import { useHistory } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router';
 import Button from '../Common/Button';
 import Sidebar from './Sidebar';
+import Settings from './Settings';
 
 interface Props {}
 
@@ -12,12 +13,10 @@ export default view(function Dashboard({}: Props): ReactElement {
   return (
     <div className="flex w-screen h-screen">
       <Sidebar />
-      <div className="flex items-center w-full p-4 space-x-4 flex-grow-1">
-        <Button
-          label="Change org"
-          className="my-4"
-          onClick={() => history.push('/organizations')}
-        />
+      <div className="flex w-full flex-grow-1">
+        <Switch>
+          <Route path="/settings" component={Settings} />
+        </Switch>
       </div>
     </div>
   );
