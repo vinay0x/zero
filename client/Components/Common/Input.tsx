@@ -7,6 +7,7 @@ interface InputProps {
   value: string;
   disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
   type: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
 }
 
@@ -18,6 +19,7 @@ export default function Input(props: InputProps): ReactElement {
         disabled={props.disabled}
         value={props.value}
         onChange={props.onChange}
+        placeholder={props.placeholder}
         type={props.type}
         className={classNames(
           'transition-all outline-none form-input text-sm text-primary block w-full py-1.5 mt-2 border border-gray-300 rounded focus:border-primary focus:outline-none focus:ring-0',

@@ -5,10 +5,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function Layout({ title }: Props): ReactElement {
+export default function Layout({ title, children }: Props): ReactElement {
   return (
     <div className="w-full">
-      <div className="p-8 text-2xl font-medium">{title}</div>
+      <div className="p-8 text-xl font-medium">{title}</div>
+      {children}
     </div>
   );
 }

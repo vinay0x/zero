@@ -1,32 +1,12 @@
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
-import BillingIcon from './Icons/Billing';
-import ConfigIcon from './Icons/Config';
-import Profile from './Icons/Profile';
-import Settings from './Icons/Settings';
 
 interface Props {
   title: string;
+  items: Array<any>;
 }
 
-export default function SideTabs({ title }: Props): ReactElement {
-  const items = [
-    {
-      title: 'General Settings',
-      to: '/settings/general',
-      icon: ConfigIcon,
-    },
-    {
-      title: 'Profile Settings',
-      to: '/settings/profile',
-      icon: Profile,
-    },
-    {
-      title: 'Plan & Billing',
-      to: '/settings/billing',
-      icon: BillingIcon,
-    },
-  ];
+export default function SideTabs({ title, items }: Props): ReactElement {
   return (
     <div className="sidetabs">
       <div className="p-8 text-xl font-medium">{title}</div>
