@@ -6,10 +6,7 @@ import { AccountController } from './account.controller';
 import { AccountService } from './account.service';
 
 @Module({
-  imports: [
-    AuthModule,
-    BullModule.registerQueue({ name: 'mail', redis: process.env.REDIS_URL }),
-  ],
+  imports: [AuthModule, BullModule.registerQueue({ name: 'mail' })],
   controllers: [AccountController],
   providers: [AccountService, MailService],
 })

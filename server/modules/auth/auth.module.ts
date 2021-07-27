@@ -12,7 +12,7 @@ import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
-    BullModule.registerQueue({ name: 'user', redis: process.env.REDIS_URL }),
+    BullModule.registerQueue({ name: 'user' }),
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '365d' },
