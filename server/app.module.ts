@@ -20,6 +20,7 @@ import PinoPretty from 'pino-pretty';
           redis: {
             host: url.hostname,
             port: Number(url.port),
+            password: url.password,
           },
         };
       },
