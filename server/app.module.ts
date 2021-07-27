@@ -13,13 +13,8 @@ import PinoPretty from 'pino-pretty';
 @Module({
   imports: [
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
-    BullModule.forRootAsync({
-      useFactory: () => {
-        console.log('Here the env value is', process.env.REDIS_URL);
-        return {
-          redis: process.env.REDIS_URL,
-        };
-      },
+    BullModule.forRoot({
+      redis: process.env.REDIS_URL,
     }),
     LoggerModule.forRoot({
       pinoHttp: {
