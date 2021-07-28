@@ -1,15 +1,15 @@
 import { InjectQueue } from '@nestjs/bull';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';
-import { Logger } from 'nestjs-pino';
 
 @Injectable()
 export class MailService {
   constructor(
     @InjectQueue('mail')
     private mailQueue: Queue,
-    private logger: Logger,
   ) {}
+
+  private readonly logger = new Logger(MailService.name);
 
   async sendWelcomeEmail(user): Promise<boolean> {
     try {

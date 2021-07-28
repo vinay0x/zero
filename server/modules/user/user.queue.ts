@@ -1,13 +1,13 @@
 import { Process, Processor } from '@nestjs/bull';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Job } from 'bull';
-import { Logger } from 'nestjs-pino';
 import { PrismaService } from 'server/database/prisma.service';
 
 @Injectable()
 @Processor('user')
 export class UserQueue {
-  constructor(private prisma: PrismaService, private logger: Logger) {}
+  constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(UserQueue.name);
 
   @Process('updateLastLoggedIn')
   async updateLastLoggedIn(job: Job) {

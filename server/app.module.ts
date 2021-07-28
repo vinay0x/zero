@@ -1,14 +1,13 @@
 import { BullModule } from '@nestjs/bull';
-import { Module } from '@nestjs/common';
+import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { LoggerModule } from 'nestjs-pino';
 import { PrismaModule } from 'server/database/prisma.module';
 import { AccountModule } from 'server/modules/account/account.module';
 import configuration from './config/configuration';
 import { MailModule } from './mail/mail.module';
+import { requestLogger } from './middlewares/logger';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
-import PinoPretty from 'pino-pretty';
 
 @Module({
   imports: [
@@ -25,13 +24,6 @@ import PinoPretty from 'pino-pretty';
         };
       },
     }),
-    LoggerModule.forRoot({
-      pinoHttp: {
-        prettyPrint: {
-          colorize: true,
-        },
-      },
-    }),
     MailModule,
     PrismaModule,
     AccountModule,
@@ -39,4 +31,8 @@ import PinoPretty from 'pino-pretty';
     UserModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(requestLogger).forRoutes('*');
+  }
+}

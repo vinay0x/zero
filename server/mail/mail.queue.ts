@@ -6,10 +6,9 @@ import {
   Process,
   Processor,
 } from '@nestjs/bull';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { Job } from 'bull';
-import { Logger } from 'nestjs-pino';
 import { PrismaService } from 'server/database/prisma.service';
 
 @Injectable()
@@ -17,9 +16,10 @@ import { PrismaService } from 'server/database/prisma.service';
 export class MailQueue {
   constructor(
     private prisma: PrismaService,
-    private logger: Logger,
     private mailerService: MailerService,
   ) {}
+
+  private readonly logger = new Logger(MailQueue.name);
 
   @OnQueueActive()
   onActive(job: Job) {

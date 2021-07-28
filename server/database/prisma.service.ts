@@ -1,18 +1,47 @@
-import { INestApplication, Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
-
+import {
+  INestApplication,
+  Injectable,
+  OnModuleInit,
+  OnModuleDestroy,
+} from '@nestjs/common';
+import { Prisma, PrismaClient } from '@prisma/client';
+import { createPrismaQueryEventHandler } from 'prisma-query-log';
+import { highlight } from 'cli-highlight';
+import chalk from 'chalk';
 @Injectable()
-export class PrismaService extends PrismaClient
-  implements OnModuleInit {
-
+export class PrismaService
+  extends PrismaClient<Prisma.PrismaClientOptions, 'query'>
+  implements OnModuleInit
+{
   constructor() {
     super({
-      log: ['query', 'info', `warn`, `error`],
-    })
+      log: [
+        {
+          emit: 'event',
+          level: 'query',
+        },
+        {
+          emit: 'stdout',
+          level: 'error',
+        },
+        {
+          emit: 'stdout',
+          level: 'info',
+        },
+      ],
+    });
   }
 
   async onModuleInit() {
     await this.$connect();
+    this.$on('query', (e) => {
+      console.log(
+        highlight(e.query.replace(/"public"./g, ''), {
+          language: 'sql',
+          ignoreIllegals: true,
+        }),
+      );
+    });
   }
 
   async enableShutdownHooks(app: INestApplication) {

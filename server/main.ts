@@ -9,7 +9,7 @@ import expressBasicAuth from 'express-basic-auth';
 import { resolve } from 'path';
 import { AppModule } from './app.module';
 import { CommonExceptionFilter } from './GlobalExceptionHandler';
-import renderReactApp from './renderReactApp';
+import renderReactApp from './middlewares/renderReactApp';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
