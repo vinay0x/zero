@@ -24,7 +24,7 @@ export class AccountController {
     return this.authService.login(user);
   }
 
-  @Get('/:organization')
+  @Get('/organization/:organization')
   getOrganization(@Param('organization') organizationName: string) {
     return this.accountService.getOrganization(organizationName);
   }
