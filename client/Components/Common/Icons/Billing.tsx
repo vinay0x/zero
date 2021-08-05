@@ -12,8 +12,8 @@ export default function BillingIcon(props: SVGProps) {
         strokeLinejoin="round"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M18.5028 11.4998H21.0038C21.5563 11.4998 22.0042 11.9477 22.0042 12.5002V15.5014C22.0042 16.0539 21.5563 16.5018 21.0038 16.5018H18.5028C17.1215 16.5018 16.0017 15.3821 16.0017 14.0008V14.0008C16.0017 12.6195 17.1215 11.4998 18.5028 11.4998V11.4998Z"
         stroke="currentColor"
         strokeWidth={props.strokeWidth}

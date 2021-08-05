@@ -18,7 +18,7 @@ interface Props {
 
 export default function Button(props: Props): ReactElement {
   const buttonStyles = {
-    primary: 'bg-gray-900 text-white drop-shadow hover:drop-shadow-md',
+    primary: 'bg-gray-800 text-white drop-shadow hover:drop-shadow-md',
     secondary:
       'text-muted hover:text-primary bg-white border border-gray-300 drop-shadow-sm',
   };

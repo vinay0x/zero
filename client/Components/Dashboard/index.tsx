@@ -9,7 +9,6 @@ import Settings from './Settings';
 interface Props {}
 
 export default view(function Dashboard({}: Props): ReactElement {
-  const history = useHistory();
   return (
     <div className="flex w-screen h-screen">
       <Sidebar />

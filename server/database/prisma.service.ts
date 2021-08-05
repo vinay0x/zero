@@ -5,14 +5,13 @@ import {
   OnModuleDestroy,
 } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
-import { createPrismaQueryEventHandler } from 'prisma-query-log';
 import { highlight } from 'cli-highlight';
-import chalk from 'chalk';
+
+
 @Injectable()
 export class PrismaService
   extends PrismaClient<Prisma.PrismaClientOptions, 'query'>
-  implements OnModuleInit
-{
+  implements OnModuleInit {
   constructor() {
     super({
       log: [

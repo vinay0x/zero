@@ -8,6 +8,7 @@ import { MailModule } from './mail/mail.module';
 import { requestLogger } from './middlewares/logger';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { BillingModule } from './modules/billing/billing.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UserModule } from './modules/user/user.module';
     AccountModule,
     AuthModule,
     UserModule,
+    BillingModule,
   ],
 })
 export class AppModule implements NestModule {

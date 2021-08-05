@@ -1,25 +1,25 @@
 import React from 'react';
 import SVG, { SVGDefaultProps, SVGProps } from './SVG';
 
-export default function Logout(props: SVGProps) {
+export default function CheckoutIcon(props: SVGProps) {
   return (
     <SVG width={props.width} height={props.height} className={props.className}>
       <path
-        d="M18.364 5.63604C21.8787 9.15076 21.8787 14.8492 18.364 18.3639C14.8493 21.8787 9.1508 21.8787 5.6361 18.3639C2.12138 14.8492 2.12138 9.15074 5.6361 5.63604C9.15082 2.12132 14.8493 2.12132 18.364 5.63604"
+        d="M19 9C20.105 9 21 9.895 21 11V18C21 19.105 20.105 20 19 20H9C7.895 20 7 19.105 7 18V18"
         stroke="currentColor"
         strokeWidth={props.strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M12 7V12"
+        d="M15 17L17 15L15 13"
         stroke="currentColor"
         strokeWidth={props.strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M15.534 8.46606C17.486 10.4181 17.486 13.5831 15.534 15.5351C13.582 17.4871 10.417 17.4871 8.465 15.5351C6.513 13.5831 6.513 10.4181 8.465 8.46606"
+        d="M3 9H16V6C16 4.895 15.105 4 14 4H5C3.895 4 3 4.895 3 6V13C3 14.105 3.895 15 5 15H17"
         stroke="currentColor"
         strokeWidth={props.strokeWidth}
         strokeLinecap="round"
@@ -29,4 +29,4 @@ export default function Logout(props: SVGProps) {
   );
 }
 
-Logout.defaultProps = SVGDefaultProps;
+CheckoutIcon.defaultProps = SVGDefaultProps;
